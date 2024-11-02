@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSA 加密/解密</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h4.navigate-text {
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+
+        .btn-outline-primary {
+            margin-right: 10px;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .copy-button {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+
+        .badge {
+            cursor: pointer;
+        }
+
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form" class="container">
+        <div class="row mb-2">
+            <div class="col-sm-12 mb-2">
+                <h4 class="navigate-text">RSA 加密/解密</h4>
+            </div>
+            <div class="col-sm-12 select-list">
+                <ul>
+                    <li>
+                        密钥位数：
+                        <select id="keySize_select" name="keySize_select" class="form-select">
+                            <option value="512">512 bits</option>
+                            <option value="1024">1024 bits</option>
+                            <option value="2048">2048 bits</option>
+                            <option value="4096">4096 bits</option>
+                        </select>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-outline-primary" onclick="rsaGenerate()">
+                            生成密钥对
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 mb-3">
+                <div class="mb-1">
+                    <strong>公钥</strong>（加密）
+                </div>
+                <div class="position-relative">
+                    <textarea class="form-control" id="txtPublicKey" rows="8" placeholder="公钥"></textarea>
+                    <div class="copy-button"><span id="txtPublicKeyCopy" class="badge bg-primary" style="display: none;">复制</span></div>
+                </div>
+            </div>
+            <div class="col-sm-6 mb-3">
+                <div class="mb-1">
+                    <strong>私钥</strong>（解密）
+                </div>
+                <div class="position-relative">
+                    <textarea class="form-control" id="txtPrivateKey" rows="8" placeholder="私钥"></textarea>
+                    <div class="copy-button"><span id="txtPrivateKeyCopy" class="badge bg-primary" style="display: none;">复制</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <div class="position-relative">
+                    <textarea class="form-control" id="txtInput" rows="8" placeholder="请输入需要加密/解密的文本"></textarea>
+                    <div class="copy-button"><span id="txtInputCopy" class="badge bg-primary" style="display: none;">复制</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-sm-12 select-list">
+                <ul>
+                    <li>
+                        <button type="button" class="btn btn-outline-primary" onclick="rsaEncrypt()">
+                            加密
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" onclick="rsaDecrypt()">
+                            解密
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" onclick="swapTextValue('txtInput','txtOutput')">
+                            签名
+                        </button>
+                        <button type="button" class="btn btn-outline-primary">
+                            验证
+                        </button>
+                        <button type="button" class="btn btn-outline-primary">
+                            ↕ 交换
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <div class="position-relative">
+                    <textarea class="form-control" id="txtOutput" rows="8" placeholder="输出"></textarea>
+                    <div class="copy-button"><span id="txtOutputCopy" class="badge bg-primary" style="display: none;">复制</span></div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
