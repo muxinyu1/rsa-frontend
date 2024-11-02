@@ -41,13 +41,6 @@ export default defineConfig({
     ],
   },
   server: {
-    port: 3000,
-    proxy: {
-      '/proxy': {
-        target: 'http://127.0.0.1:8080', // 你的后端 API 服务器地址
-        changeOrigin: true, // 支持虚拟托管
-        rewrite: (path) => path.replace(/^\/proxy/, ''), // 重写路径
-      },
-    },
+    port: 3000
   },
 })

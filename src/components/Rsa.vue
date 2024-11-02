@@ -84,7 +84,7 @@ export default {
     methods: {
         generateKeys() {
             const len = parseInt(this.keySize, 10);
-            axios.get(`/proxy/api/keygen/${len}`).then(response => {
+            axios.get(`/api/keygen/${len}`).then(response => {
                 if (response.status == 200) {
                     this.publicKey = response.data.keys.public_key;
                     this.privateKey = response.data.keys.private_key;
@@ -111,7 +111,7 @@ export default {
                 this.showSnackbar("请输入要加密的文本", 'error');
                 return;
             }
-            axios.post('/proxy/api/encrypt', {
+            axios.post('/api/encrypt', {
                 "message": this.inputText,
                 "public_key": this.publicKey
             }).then(response => {
@@ -135,7 +135,7 @@ export default {
                 this.showSnackbar("请输入要解密的文本", 'error');
                 return;
             }
-            axios.post('/proxy/api/decrypt', {
+            axios.post('/api/decrypt', {
                 "ciphertext": this.inputText,
                 "public_key": this.publicKey,
                 "private_key": this.privateKey
@@ -160,7 +160,7 @@ export default {
                 this.showSnackbar("请输入要签名的文本", 'error');
                 return;
             }
-            axios.post('/proxy/api/sign', {
+            axios.post('/api/sign', {
                 "message": this.inputText,
                 "public_key": this.publicKey,
                 "private_key": this.privateKey
@@ -189,7 +189,7 @@ export default {
                 this.showSnackbar("请先签名", "error");
                 return;
             }
-            axios.post('/proxy/api/verify_sign', {
+            axios.post('/api/verify_sign', {
                 "message": this.inputText,
                 "message_signed": this.signedText,
                 "public_key": this.publicKey,
