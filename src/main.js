@@ -14,7 +14,7 @@ import App from './App.vue'
 import { createApp } from 'vue'
 import axios from 'axios'
 
-axios.defaults.baseURL = `${import.meta.env.VITE_API_BASE_URL}:${import.meta.env.VITE_API_BASE_PORT}`
+axios.defaults.baseURL = `${process.env.VUE_APP_BASE_URL}:${process.env.VUE_APP_BASE_PORT}`
 
 const app = createApp(App)
 
