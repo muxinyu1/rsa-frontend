@@ -14,7 +14,7 @@ import App from './App.vue'
 import { createApp } from 'vue'
 import axios from 'axios'
 
-axios.defaults.baseURL = `${process.env.VUE_APP_BASE_URL}:${process.env.VUE_APP_BASE_PORT}`
+axios.defaults.baseURL = `http://143.244.129.217:8080`
 
 const app = createApp(App)
 
